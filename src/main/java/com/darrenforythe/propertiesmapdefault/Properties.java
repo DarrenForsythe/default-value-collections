@@ -20,22 +20,20 @@ public class Properties {
 
     static class Nested {
 
-        private final Map<String, String> shouldNotBeNull;
-        private final List<String> stringList;
+        private final Map<String, String> map;
+        private final List<String> list;
 
-        public Nested(
-                 final Map<String, String> shouldNotBeNull,
-                @DefaultValue final List<String> stringList) {
-            this.shouldNotBeNull = shouldNotBeNull;
-            this.stringList = stringList;
+        public Nested(final Map<String, String> map, final List<String> list) {
+            this.map = map;
+            this.list = list;
         }
 
-        public Map<String, String> getShouldNotBeNull() {
-            return shouldNotBeNull;
+        public Map<String, String> getMap() {
+            return map;
         }
 
-        public List<String> getStringList() {
-            return stringList;
+        public List<String> getList() {
+            return list;
         }
     }
 

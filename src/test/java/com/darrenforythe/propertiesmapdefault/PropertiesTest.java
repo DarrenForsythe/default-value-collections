@@ -22,7 +22,7 @@ class PropertiesTest {
     void listShouldNotBeNull() {
         applicationContextRunner.run(
                 context ->
-                        assertThat(context.getBean(Properties.class).getNested().getStringList())
+                        assertThat(context.getBean(Properties.class).getNested().getList())
                                 .isNotNull()
                                 .isEmpty());
     }
@@ -31,11 +31,31 @@ class PropertiesTest {
     void mapShouldNotBeNull() {
         applicationContextRunner.run(
                 context ->
-                        assertThat(
-                                        context.getBean(Properties.class)
-                                                .getNested()
-                                                .getShouldNotBeNull())
+                        assertThat(context.getBean(Properties.class).getNested().getMap())
                                 .isNotNull()
                                 .isEmpty());
+    }
+
+
+    @Test
+    void mapShouldNotBeNullWithValues() {
+        applicationContextRunner
+                .withPropertyValues("test.nested.map.hello.map")
+                .run(
+                        context ->
+                                assertThat(context.getBean(Properties.class).getNested().getMap())
+                                        .isNotNull()
+                                        .hasSize(1));
+    }
+
+    @Test
+    void listShouldNotBeNullWithValues() {
+        applicationContextRunner
+                .withPropertyValues("test.nested.list[0]=list")
+                .run(
+                        context ->
+                                assertThat(context.getBean(Properties.class).getNested().getList())
+                                        .isNotNull()
+                                        .hasSize(1));
     }
 }
